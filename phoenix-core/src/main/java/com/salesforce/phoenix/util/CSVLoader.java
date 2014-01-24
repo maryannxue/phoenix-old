@@ -230,7 +230,7 @@ public class CSVLoader {
             int i = 0;
             columnType = new ColumnInfo[columnNameToTypeMap.size()];
             for (Map.Entry<String, Integer> entry : columnNameToTypeMap.entrySet()) {
-                columnType[i++] = new ColumnInfo(entry.getKey(),entry.getValue());
+                columnType[i++] = new ColumnInfo('"' + entry.getKey() + '"',entry.getValue());
             }
 	    } else {
             // Leave "null" as indication to skip b/c it doesn't exist
@@ -245,7 +245,7 @@ public class CSVLoader {
                     }
                     unfoundColumnCount++;
                 } else {
-                    columnType[i] = new ColumnInfo(columnName, sqlType);
+                    columnType[i] = new ColumnInfo('"' + columnName + '"', sqlType);
                 }
             }
             if (unfoundColumnCount == columns.size()) {
